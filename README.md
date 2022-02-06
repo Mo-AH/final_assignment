@@ -130,6 +130,6 @@ else
 
 ## Possible improvements
 
-The program could be improved in several ways:
+The program could be improved in the following ways:
 * It would have been better to do a separate node even for the first mode (automatic), in order to mantain a modular program
 * When the robot has a complete knowledge of the map, it should be able to know if a certain coordinate is reacheable before trying

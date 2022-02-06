@@ -102,9 +102,10 @@ SWITCH CHOICE:
 -----------------------
 ### manual_node
 
-This is the node that allows the user to control the robot with the keyboard, with the `teleop_twist_keyboard` console.
+This is the node that allows the user to control the robot with the keyboard, via `teleop_twist_keyboard`, runned in another console.
 
 In the standard manual mode, it simply publishes velocities as received, so the user can even go straight to an obstacle.
+
 In the manual mode with collision assistant, it receives velocities and laser scan ranges, which are checked to see if the user is going in a direction where there are obstacles more near than a certain threshold (0.8).
 In this case, it set the velocity (linear/angular) pointing to the obstacle to 0.
 

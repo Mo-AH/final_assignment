@@ -63,7 +63,7 @@ To do the assignment, I created 2 nodes:
 * `manual_node`: enables manual driving and avoid obstacles with the assistant, if the parameter is enabled.
 
 The user can manual drive the robot via `teleop_twist_keyboard` console, which normally publishes the velocities on `/cmd_vel` topic.
-This topic is remapped in the launch file to `/check_vel` topic, which is received by `manual_node` (if active).
+This topic is remapped in the launch file to `/check_vel` topic, which is received by `manual_node` (if active). This means that, when it is inactive, velocities set by `teleop_twist_keyboard` console will not be taken into account.
 
 I also set a boolean parameter `collisionAssistant`, which is also checked by the `manual_node` to know if it has to assist the user to avoid obstacles.
 
@@ -114,11 +114,11 @@ That's his pseudocode, where 2 parts run simoultanously:
 ```
 get parameter collisionAssistant
 
-== PART 1
+== PART 1 ==
 if user enters a command, switch off the node and go back to the `ui_node`
 
 
-== PART 2
+== PART 2 ==
 If collisionAssistant
   receive velocity and laser scan ranges
   check obstacles in the ranges and modify velocity if required
@@ -128,6 +128,7 @@ else
 
 ```
 
+-----------------------
 ## Possible improvements
 
 The program could be improved in the following ways:

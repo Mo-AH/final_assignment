@@ -1,7 +1,7 @@
 
 # Third and Final Assignment of Research Track 1 - Robotics Engineering - UniGE
 
-In this assignment, a robot moves in an environment unknown to it. A laser scan is mounted on the robot in order to move in the environment: when it explored all the maped, it has even a complete reconstruction of it:
+In this assignment, a robot moves in an environment unknown to it. A laser scan is mounted on the robot in order to move in the environment: when it explored all the maped, it has even a complete reconstruction of it.
 
 The user can interact with the robot in 3 ways:
 *  setting a coordinate [X,Y] of a goal that will autonomously reached by the robot

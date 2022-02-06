@@ -44,26 +44,40 @@ Done that, you can simply follow these steps:
 ## Environment and mapping
 The robot initial position and the environment are the following (Gazebo view):
 
-
+![image](https://user-images.githubusercontent.com/91679281/152662701-0632bd93-18f9-4366-ac78-e96088d28c25.png)
 
 
 As said, it doesn't know the map at the begging, but thanks to the laser scan it can recognize it.
 This is his initial view and knowledge of the map (RViz view):
 
 
+![image](https://user-images.githubusercontent.com/91679281/152662754-78015187-4c33-40ca-b9c6-f1aba4ad9ff0.png)
 
 
 
 -----------------------
 ## Program structure
 
+To do the assignment, I created 2 nodes:
+* `ui_node`: provides the main menu to user and implements the mechanism to reach autonomously a goal.
+* `manual_node`: enables manual driving and avoid obstacles with the assistant, if the parameter is enabled.
 
+The user can manual drive the robot via `teleop_twist_keyboard` console, which normally publishes the velocities on `/cmd_vel` topic.
+This topic is remapped in the launch file to `/check_vel` topic, which is received by `manual_node` (if active).
 
-
+I also set a boolean parameter `collisionAssistant`, which is also checked by the `manual_node` to know if it has to assist the user to avoid obstacles.
 
 
 -----------------------
 ### ui_node
+
+This is the main node of the program. It provides a main menu to the user, who can choose the modality among the three mentioned. It is executed by the launch file and it is always active.
+
+It also implements the first modality, to reach the goal autonomously, by simply taking the goal coordinate from the user and publishing it in `move_base/goal` topic.
+It receives feedback and it checks the status from the action.
+
+![image](https://user-images.githubusercontent.com/91679281/152662919-dddf3ef8-0887-48bb-aaa2-bb66e3be3e82.png)
+
 
 That's his pseudocode:
 
@@ -100,24 +114,21 @@ That's his pseudocode, where 2 parts run simoultanously:
 get parameter collisionAssistant
 
 == PART 1
-if user enter a command, switch off the node and go back to the `ui_node`
+if user enters a command, switch off the node and go back to the `ui_node`
 
 
 == PART 2
 If collisionAssistant
-  check obstacles (via laserScan) and velocities as described
+  receive velocity and laser scan ranges
+  check obstacles in the ranges and modify velocity if required
+  publish velocity
 else
   publish velocities as received
-
-
-
 
 ```
 
 ## Possible improvements
 
 The program could be improved in several ways:
-* Get more fluid movements of the robot, maybe simulating a real trajectory of a F1 Machine
-* Do more controls when changing speed, for example to never go under 0 for both linear and angular speed, to avoid unrealistic behaviour
-* Adding a button to change the sense of the lap from counter-clockwise to clockwise
-* Adding an int counting the number of laps and a time variable to get the time for every lap
+* It would have been better to do a separate node even for the first mode (automatic), in order to mantain a modular program
+* When the robot has a complete knowledge of the map, it should be able to know if a certain coordinate is reacheable before trying

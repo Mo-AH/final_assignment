@@ -47,7 +47,7 @@ The robot initial position and the environment are the following (Gazebo view):
 ![image](https://user-images.githubusercontent.com/91679281/152662701-0632bd93-18f9-4366-ac78-e96088d28c25.png)
 
 
-As said, it doesn't know the map at the begging, but thanks to the laser scan it can recognize it.
+As said, it doesn't know the map at the beginning, but thanks to the laser scan it can recognize it.
 This is his initial view and knowledge of the map (RViz view):
 
 

@@ -1,0 +1,135 @@
+\hypertarget{manual_8cpp}{}\doxysection{src/manual.cpp File Reference}
+\label{manual_8cpp}\index{src/manual.cpp@{src/manual.cpp}}
+
+
+Manual controller of the robot.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Laser\+Scan.\+h\char`\"{}}\newline
+Include dependency graph for manual.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{manual_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{manual_8cpp_aa4d1dd299d39287a05983faf79e4fd7d}\label{manual_8cpp_aa4d1dd299d39287a05983faf79e4fd7d}} 
+\#define \mbox{\hyperlink{manual_8cpp_aa4d1dd299d39287a05983faf79e4fd7d}{W\+A\+L\+L\+\_\+\+TH}}~0.\+8
+\begin{DoxyCompactList}\small\item\em Threshold distance from the wall to not be exceeded when the collision assistan is on. ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{manual_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function of the manual node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{manual_8cpp_a60e6d5e952ea263ffd664435526673ed}{manual\+Drive}} ()
+\begin{DoxyCompactList}\small\item\em Manual drive function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{manual_8cpp_accc61c6bd4cc1f1aa51c6a270e390c38}{check\+Vel}} (const geometry\+\_\+msgs\+::\+Twist\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function of /check\+\_\+vel topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{manual_8cpp_a060d2b1bc6a85691b04df56b7e399e7a}{driving\+Assistant}} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&laser\+Msg)
+\begin{DoxyCompactList}\small\item\em Callback function of /scan topic (Laser\+Scan) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{manual_8cpp_ac0664a23d360105ec3d579965d5b7631}\label{manual_8cpp_ac0664a23d360105ec3d579965d5b7631}} 
+ros\+::\+Publisher \mbox{\hyperlink{manual_8cpp_ac0664a23d360105ec3d579965d5b7631}{pub\+\_\+vel}}
+\begin{DoxyCompactList}\small\item\em Global publisher to send velocities. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{manual_8cpp_abd6f6b880e1b04dbcf84d6ccbfe1efaa}\label{manual_8cpp_abd6f6b880e1b04dbcf84d6ccbfe1efaa}} 
+bool \mbox{\hyperlink{manual_8cpp_abd6f6b880e1b04dbcf84d6ccbfe1efaa}{assistant}} = false
+\begin{DoxyCompactList}\small\item\em Global boolean defining if the collision assistant is on/off. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{manual_8cpp_a511b3d224c1d6e07e2884ce294238ccc}\label{manual_8cpp_a511b3d224c1d6e07e2884ce294238ccc}} 
+geometry\+\_\+msgs\+::\+Twist \mbox{\hyperlink{manual_8cpp_a511b3d224c1d6e07e2884ce294238ccc}{my\+Vel}}
+\begin{DoxyCompactList}\small\item\em Global velocity message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manual controller of the robot. 
+
+\begin{DoxyAuthor}{Author}
+Mohammad Al Horany 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+10/04/2022
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em assistant} & Defines if the collision avoidance is on.\\
+\hline
+\end{DoxyParams}
+Subscribes to\+: ~\newline
+ /check\+\_\+vel It contains the velocity to be sent to the robot /scan It contains the laser scan ranges
+
+Publishes to\+: ~\newline
+ /cmd\+\_\+vel It sends the velocity to the robot
+
+Description \+: This is the node that allows the user to control the robot with the keyboard, via \textquotesingle{}teleop\+\_\+twist\+\_\+keyboard\textquotesingle{}, runned in another console. If the collision assistant is off, it simply publishes velocities as received, so the user can even go straight to an obstacle. If the collision assistant is on, it receives velocities and laser scan ranges, and checks if the user is going in a direction where there are obstacles more near than a certain threshold (0.\+8). In this case, it sets the velocity (linear/angular) pointing to the obstacle to 0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{manual_8cpp_accc61c6bd4cc1f1aa51c6a270e390c38}\label{manual_8cpp_accc61c6bd4cc1f1aa51c6a270e390c38}} 
+\index{manual.cpp@{manual.cpp}!checkVel@{checkVel}}
+\index{checkVel@{checkVel}!manual.cpp@{manual.cpp}}
+\doxysubsubsection{\texorpdfstring{checkVel()}{checkVel()}}
+{\footnotesize\ttfamily void check\+Vel (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Twist\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function of /check\+\_\+vel topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Robot\textquotesingle{}s velocity\\
+\hline
+\end{DoxyParams}
+This function is called whenever the teleop twist keyboard node tries to send a new velocity\+:
+\begin{DoxyItemize}
+\item C\+O\+L\+L\+I\+S\+I\+ON A\+S\+S\+I\+S\+T\+A\+NT O\+FF -\/-\/$>$ it publishes the velocity as received in /cmd\+\_\+vel topic
+\item C\+O\+L\+L\+I\+S\+I\+ON A\+S\+S\+I\+S\+T\+A\+NT ON -\/-\/$>$ it saves the velocity in a global variable 
+\end{DoxyItemize}\mbox{\Hypertarget{manual_8cpp_a060d2b1bc6a85691b04df56b7e399e7a}\label{manual_8cpp_a060d2b1bc6a85691b04df56b7e399e7a}} 
+\index{manual.cpp@{manual.cpp}!drivingAssistant@{drivingAssistant}}
+\index{drivingAssistant@{drivingAssistant}!manual.cpp@{manual.cpp}}
+\doxysubsubsection{\texorpdfstring{drivingAssistant()}{drivingAssistant()}}
+{\footnotesize\ttfamily void driving\+Assistant (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{laser\+Msg }\end{DoxyParamCaption})}
+
+
+
+Callback function of /scan topic (Laser\+Scan) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em laser\+Msg} & Robot\textquotesingle{}s laser scan\\
+\hline
+\end{DoxyParams}
+This function is called at every message on the /scan topic\+:
+\begin{DoxyItemize}
+\item C\+O\+L\+L\+I\+S\+I\+ON A\+S\+S\+I\+S\+T\+A\+NT O\+FF -\/-\/$>$ it ignores the message and returns
+\item C\+O\+L\+L\+I\+S\+I\+ON A\+S\+S\+I\+S\+T\+A\+NT ON -\/-\/$>$ it stops the robot motion along a certain direction if there is a wall near in that direction and publishes the velocity in /cmd\+\_\+vel topic 
+\end{DoxyItemize}\mbox{\Hypertarget{manual_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{manual_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{manual.cpp@{manual.cpp}!main@{main}}
+\index{main@{main}!manual.cpp@{manual.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function of the manual node. 
+
+This is the main function of the manual mode. It initializes the node, subscribes to \char`\"{}/check\+\_\+vel\char`\"{} and \char`\"{}/scan\char`\"{} topics and defines a publisher on \char`\"{}/cmd\+\_\+vel\char`\"{}. After that, it gets the parameter \char`\"{}collision\+Assistant\char`\"{} from the parameter server and puts it in a global variable. It calls the \char`\"{}manual\+Drive\char`\"{} function which returns if the user presses a key, so the main function can shutdown the node. \mbox{\Hypertarget{manual_8cpp_a60e6d5e952ea263ffd664435526673ed}\label{manual_8cpp_a60e6d5e952ea263ffd664435526673ed}} 
+\index{manual.cpp@{manual.cpp}!manualDrive@{manualDrive}}
+\index{manualDrive@{manualDrive}!manual.cpp@{manual.cpp}}
+\doxysubsubsection{\texorpdfstring{manualDrive()}{manualDrive()}}
+{\footnotesize\ttfamily void manual\+Drive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Manual drive function. 
+
+This function is called when the user choose the manual driving mode. It prints an informational output and waits for an input to exit the manual mode and shutdown the node. 

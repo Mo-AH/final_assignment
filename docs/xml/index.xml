@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="namespaceconf" kind="namespace"><name>conf</name>
+    <member refid="conf_8py_1a45653c983098153b78e33600e39230eb" kind="variable"><name>project</name></member>
+    <member refid="conf_8py_1a33fa97cf51dcb25970fbf53f10159589" kind="variable"><name>copyright</name></member>
+    <member refid="conf_8py_1a637c239d256432248aa8d9f3ab0b8c52" kind="variable"><name>author</name></member>
+    <member refid="conf_8py_1a325dc746d8bf05c54d26351c35a21d90" kind="variable"><name>release</name></member>
+    <member refid="conf_8py_1ae475e080536acb271a0a0efe56c3ba42" kind="variable"><name>extensions</name></member>
+    <member refid="conf_8py_1ae850ae634911b713e036b43894fdd525" kind="variable"><name>templates_path</name></member>
+    <member refid="conf_8py_1a7ad48fb6f3e9b129c02346ea0d3527c1" kind="variable"><name>exclude_patterns</name></member>
+    <member refid="conf_8py_1a6c3bfcc1a44546c1c75ce20f55bd0fd6" kind="variable"><name>html_theme</name></member>
+  </compound>
+  <compound refid="manual_8cpp" kind="file"><name>manual.cpp</name>
+    <member refid="manual_8cpp_1aa4d1dd299d39287a05983faf79e4fd7d" kind="define"><name>WALL_TH</name></member>
+    <member refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kind="variable"><name>pub_vel</name></member>
+    <member refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kind="variable"><name>assistant</name></member>
+    <member refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kind="variable"><name>myVel</name></member>
+    <member refid="manual_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+    <member refid="manual_8cpp_1a60e6d5e952ea263ffd664435526673ed" kind="function"><name>manualDrive</name></member>
+    <member refid="manual_8cpp_1accc61c6bd4cc1f1aa51c6a270e390c38" kind="function"><name>checkVel</name></member>
+    <member refid="manual_8cpp_1a060d2b1bc6a85691b04df56b7e399e7a" kind="function"><name>drivingAssistant</name></member>
+  </compound>
+  <compound refid="conf_8py" kind="file"><name>conf.py</name>
+  </compound>
+  <compound refid="ui_8cpp" kind="file"><name>ui.cpp</name>
+    <member refid="ui_8cpp_1a45ba202b05caf39795aeca91b0ae547e" kind="define"><name>TIMEOUT</name></member>
+    <member refid="ui_8cpp_1ae057aae7fbba2a4cef62321020305295" kind="variable"><name>pub_goal</name></member>
+    <member refid="ui_8cpp_1a33cbe548b1e0f6b08bbe754f53af458c" kind="variable"><name>pub_cancel</name></member>
+    <member refid="ui_8cpp_1abc2407a897aa2b5d1d9d65f6728027dd" kind="variable"><name>canc_goal</name></member>
+    <member refid="ui_8cpp_1a1292e042df88fd7461a4dc998912f6d1" kind="variable"><name>goal</name></member>
+    <member refid="ui_8cpp_1a0fc1f09b9abf6843e19b643f448bef53" kind="variable"><name>shutdown</name></member>
+    <member refid="ui_8cpp_1a829831b69f522e8f5ae5dcdc28158d3e" kind="variable"><name>x_goal</name></member>
+    <member refid="ui_8cpp_1a20e8d23393e688fc52779c872bdc1e45" kind="variable"><name>y_goal</name></member>
+    <member refid="ui_8cpp_1ad8d2f977aec638fff47fff3c61b88ad5" kind="variable"><name>id_goal</name></member>
+    <member refid="ui_8cpp_1a6f587a0eb512cde589958649fbe0be71" kind="variable"><name>start</name></member>
+    <member refid="ui_8cpp_1af1d374bbc631bb15a8f3b7f5208c921b" kind="variable"><name>end</name></member>
+    <member refid="ui_8cpp_1a993dee0d19091c6d48fdeda230fd6be0" kind="variable"><name>duration</name></member>
+    <member refid="ui_8cpp_1a166ff10178716638dad268b1ddab8242" kind="function"><name>inputCommand</name></member>
+    <member refid="ui_8cpp_1ac44135482fcab66ae9b51aa8e4e6cb95" kind="function"><name>inputGoal</name></member>
+    <member refid="ui_8cpp_1aa098f199ee60423fd257562757fa6ed8" kind="function"><name>checkGoalStatus</name></member>
+    <member refid="ui_8cpp_1a6911e3fbd406f287be9ab539f0459c0a" kind="function"><name>cancelGoal</name></member>
+    <member refid="ui_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_94e7a0fbe7f8eaf7f05ee7b02c647e9f" kind="dir"><name>src/source</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

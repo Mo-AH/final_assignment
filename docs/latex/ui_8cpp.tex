@@ -1,0 +1,172 @@
+\hypertarget{ui_8cpp}{}\doxysection{src/ui.cpp File Reference}
+\label{ui_8cpp}\index{src/ui.cpp@{src/ui.cpp}}
+
+
+User interface controller of the robot.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}actionlib\+\_\+msgs/\+Goal\+I\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move\+\_\+base\+\_\+msgs/\+Move\+Base\+Action\+Goal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move\+\_\+base\+\_\+msgs/\+Move\+Base\+Action\+Feedback.\+h\char`\"{}}\newline
+Include dependency graph for ui.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ui_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ui_8cpp_a45ba202b05caf39795aeca91b0ae547e}\label{ui_8cpp_a45ba202b05caf39795aeca91b0ae547e}} 
+\#define \mbox{\hyperlink{ui_8cpp_a45ba202b05caf39795aeca91b0ae547e}{T\+I\+M\+E\+O\+UT}}~120
+\begin{DoxyCompactList}\small\item\em Timeout = 2minutes (goal cancelled after timeout) ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ui_8cpp_a166ff10178716638dad268b1ddab8242}{input\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Main menu to input commands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8cpp_ac44135482fcab66ae9b51aa8e4e6cb95}{input\+Goal}} ()
+\begin{DoxyCompactList}\small\item\em Function to input the goal coordinates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8cpp_aa098f199ee60423fd257562757fa6ed8}{check\+Goal\+Status}} (const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Feedback\+::\+Const\+Ptr \&feedback\+Msg)
+\begin{DoxyCompactList}\small\item\em Callback function of /move\+\_\+base/feedback. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8cpp_a6911e3fbd406f287be9ab539f0459c0a}{cancel\+Goal}} ()
+\begin{DoxyCompactList}\small\item\em Function to cancel the goal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ui_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function of the UI node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ui_8cpp_ae057aae7fbba2a4cef62321020305295}\label{ui_8cpp_ae057aae7fbba2a4cef62321020305295}} 
+ros\+::\+Publisher \mbox{\hyperlink{ui_8cpp_ae057aae7fbba2a4cef62321020305295}{pub\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Publisher to send the goal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a33cbe548b1e0f6b08bbe754f53af458c}\label{ui_8cpp_a33cbe548b1e0f6b08bbe754f53af458c}} 
+ros\+::\+Publisher \mbox{\hyperlink{ui_8cpp_a33cbe548b1e0f6b08bbe754f53af458c}{pub\+\_\+cancel}}
+\begin{DoxyCompactList}\small\item\em Publisher to cancel the goal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_abc2407a897aa2b5d1d9d65f6728027dd}\label{ui_8cpp_abc2407a897aa2b5d1d9d65f6728027dd}} 
+actionlib\+\_\+msgs\+::\+Goal\+ID \mbox{\hyperlink{ui_8cpp_abc2407a897aa2b5d1d9d65f6728027dd}{canc\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Action message to cancel the goal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a1292e042df88fd7461a4dc998912f6d1}\label{ui_8cpp_a1292e042df88fd7461a4dc998912f6d1}} 
+bool \mbox{\hyperlink{ui_8cpp_a1292e042df88fd7461a4dc998912f6d1}{goal}} = false
+\begin{DoxyCompactList}\small\item\em Boolean defining if there is a goal active. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a0fc1f09b9abf6843e19b643f448bef53}\label{ui_8cpp_a0fc1f09b9abf6843e19b643f448bef53}} 
+bool \mbox{\hyperlink{ui_8cpp_a0fc1f09b9abf6843e19b643f448bef53}{shutdown}} = false
+\begin{DoxyCompactList}\small\item\em Boolean defining if user wants to exit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}\label{ui_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}} 
+float \mbox{\hyperlink{ui_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}{x\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Coordinate X of the goal. ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a20e8d23393e688fc52779c872bdc1e45}\label{ui_8cpp_a20e8d23393e688fc52779c872bdc1e45}} 
+float \mbox{\hyperlink{ui_8cpp_a20e8d23393e688fc52779c872bdc1e45}{y\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Coordinate Y of the goal. ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_ad8d2f977aec638fff47fff3c61b88ad5}\label{ui_8cpp_ad8d2f977aec638fff47fff3c61b88ad5}} 
+std\+::string \mbox{\hyperlink{ui_8cpp_ad8d2f977aec638fff47fff3c61b88ad5}{id\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Goal ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a6f587a0eb512cde589958649fbe0be71}\label{ui_8cpp_a6f587a0eb512cde589958649fbe0be71}} 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{ui_8cpp_a6f587a0eb512cde589958649fbe0be71}{start}}
+\begin{DoxyCompactList}\small\item\em Starting time of goal reaching. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_af1d374bbc631bb15a8f3b7f5208c921b}\label{ui_8cpp_af1d374bbc631bb15a8f3b7f5208c921b}} 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{ui_8cpp_af1d374bbc631bb15a8f3b7f5208c921b}{end}}
+\begin{DoxyCompactList}\small\item\em Ending time of goal reaching. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ui_8cpp_a993dee0d19091c6d48fdeda230fd6be0}\label{ui_8cpp_a993dee0d19091c6d48fdeda230fd6be0}} 
+long int \mbox{\hyperlink{ui_8cpp_a993dee0d19091c6d48fdeda230fd6be0}{duration}}
+\begin{DoxyCompactList}\small\item\em Duration time of goal reaching. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+User interface controller of the robot. 
+
+\begin{DoxyAuthor}{Author}
+Mohammad Al Horany 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+10/04/2022
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em assistant} & Defines if the collision avoidance is on.\\
+\hline
+\end{DoxyParams}
+Subscribes to\+: ~\newline
+
+\begin{DoxyItemize}
+\item /move\+\_\+base/feedback It contains the feedback of the move\+\_\+base action
+\end{DoxyItemize}
+
+Publishes to\+: ~\newline
+
+\begin{DoxyItemize}
+\item /move\+\_\+base/goal It permits to set a goal via move\+\_\+base action
+\item /move\+\_\+base/cancel It permits to cancel a goal via move\+\_\+base action
+\end{DoxyItemize}
+
+Description \+: ~\newline
+
+
+This is the main node of the program. It provides a main menu to the user, who can choose the modality among the three mentioned. It is executed by the launch file and it is always active. It also implements the automatic mode (reach the goal autonomously), by simply taking the goal coordinate from the user and publishing it in move\+\_\+base/goal topic. It receives feedback and it checks the status from the action. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ui_8cpp_a6911e3fbd406f287be9ab539f0459c0a}\label{ui_8cpp_a6911e3fbd406f287be9ab539f0459c0a}} 
+\index{ui.cpp@{ui.cpp}!cancelGoal@{cancelGoal}}
+\index{cancelGoal@{cancelGoal}!ui.cpp@{ui.cpp}}
+\doxysubsubsection{\texorpdfstring{cancelGoal()}{cancelGoal()}}
+{\footnotesize\ttfamily void cancel\+Goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to cancel the goal. 
+
+This function is called to cancel a goal, by publishing a message with the goal ID in \textquotesingle{}/move\+\_\+base/cancel\textquotesingle{}. \mbox{\Hypertarget{ui_8cpp_aa098f199ee60423fd257562757fa6ed8}\label{ui_8cpp_aa098f199ee60423fd257562757fa6ed8}} 
+\index{ui.cpp@{ui.cpp}!checkGoalStatus@{checkGoalStatus}}
+\index{checkGoalStatus@{checkGoalStatus}!ui.cpp@{ui.cpp}}
+\doxysubsubsection{\texorpdfstring{checkGoalStatus()}{checkGoalStatus()}}
+{\footnotesize\ttfamily void check\+Goal\+Status (\begin{DoxyParamCaption}\item[{const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Feedback\+::\+Const\+Ptr \&}]{feedback\+Msg }\end{DoxyParamCaption})}
+
+
+
+Callback function of /move\+\_\+base/feedback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em feedback\+Msg} & Action move\+\_\+base feedback.\\
+\hline
+\end{DoxyParams}
+This function updates the goal ID and checks if the goal has been reached or it cannot be reached, displaying a message in those cases. If the timeout has been exceeded, it cancels the goal. \mbox{\Hypertarget{ui_8cpp_a166ff10178716638dad268b1ddab8242}\label{ui_8cpp_a166ff10178716638dad268b1ddab8242}} 
+\index{ui.cpp@{ui.cpp}!inputCommand@{inputCommand}}
+\index{inputCommand@{inputCommand}!ui.cpp@{ui.cpp}}
+\doxysubsubsection{\texorpdfstring{inputCommand()}{inputCommand()}}
+{\footnotesize\ttfamily void input\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main menu to input commands. 
+
+This function displays the main menu and takes commands from the user to choose the modality or to quit the program. When in autonomously driving mode, it provides a command to cancel the goal. \mbox{\Hypertarget{ui_8cpp_ac44135482fcab66ae9b51aa8e4e6cb95}\label{ui_8cpp_ac44135482fcab66ae9b51aa8e4e6cb95}} 
+\index{ui.cpp@{ui.cpp}!inputGoal@{inputGoal}}
+\index{inputGoal@{inputGoal}!ui.cpp@{ui.cpp}}
+\doxysubsubsection{\texorpdfstring{inputGoal()}{inputGoal()}}
+{\footnotesize\ttfamily void input\+Goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to input the goal coordinates. 
+
+This function is called when the user choose autonomously driving mode. It takes the goal coordinates from him and starts the action, changing the state of the robot and starting the timer. \mbox{\Hypertarget{ui_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{ui_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{ui.cpp@{ui.cpp}!main@{main}}
+\index{main@{main}!ui.cpp@{ui.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function of the UI node. 
+
+This is the main function of the user interface node. It initializes the node, defines publishers (to set and cancel a goal) and a subscriber (to get the action feedback). After that, it repeatdly calls the \textquotesingle{}input\+Command\textquotesingle{} function until user wants to exit, so that it shutdown the node. 

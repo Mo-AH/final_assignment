@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="manual_8cpp" kind="file" language="C++">
+    <compoundname>manual.cpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="yes">ros/ros.h</includes>
+    <includes local="yes">geometry_msgs/Twist.h</includes>
+    <includes local="yes">sensor_msgs/LaserScan.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>src/manual.cpp</label>
+        <link refid="manual_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>geometry_msgs/Twist.h</label>
+      </node>
+      <node id="3">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>sensor_msgs/LaserScan.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="manual_8cpp_1aa4d1dd299d39287a05983faf79e4fd7d" prot="public" static="no">
+        <name>WALL_TH</name>
+        <initializer>0.8</initializer>
+        <briefdescription>
+<para>Threshold distance from the wall to not be exceeded when the collision assistan is on. <linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="34" column="9" bodyfile="src/manual.cpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher pub_vel</definition>
+        <argsstring></argsstring>
+        <name>pub_vel</name>
+        <briefdescription>
+<para>Global publisher to send velocities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="37" column="16" bodyfile="src/manual.cpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool assistant</definition>
+        <argsstring></argsstring>
+        <name>assistant</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Global boolean defining if the collision assistant is on/off. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="40" column="6" bodyfile="src/manual.cpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" prot="public" static="no" mutable="no">
+        <type>geometry_msgs::Twist</type>
+        <definition>geometry_msgs::Twist myVel</definition>
+        <argsstring></argsstring>
+        <name>myVel</name>
+        <briefdescription>
+<para>Global velocity message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="41" column="22" bodyfile="src/manual.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="manual_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>Main function of the manual node. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the main function of the manual mode. It initializes the node, subscribes to &quot;/check_vel&quot; and &quot;/scan&quot; topics and defines a publisher on &quot;/cmd_vel&quot;. After that, it gets the parameter &quot;collisionAssistant&quot; from the parameter server and puts it in a global variable. It calls the &quot;manualDrive&quot; function which returns if the user presses a key, so the main function can shutdown the node. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="55" column="5" bodyfile="src/manual.cpp" bodystart="55" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="manual_8cpp_1a60e6d5e952ea263ffd664435526673ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void manualDrive</definition>
+        <argsstring>()</argsstring>
+        <name>manualDrive</name>
+        <briefdescription>
+<para>Manual drive function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is called when the user choose the manual driving mode. It prints an informational output and waits for an input to exit the manual mode and shutdown the node. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="90" column="6" bodyfile="src/manual.cpp" bodystart="90" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="manual_8cpp_1accc61c6bd4cc1f1aa51c6a270e390c38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void checkVel</definition>
+        <argsstring>(const geometry_msgs::Twist::ConstPtr &amp;msg)</argsstring>
+        <name>checkVel</name>
+        <param>
+          <type>const geometry_msgs::Twist::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Callback function of /check_vel topic. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Robot&apos;s velocity</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is called whenever the teleop twist keyboard node tries to send a new velocity:<itemizedlist>
+<listitem><para>COLLISION ASSISTANT OFF --&gt; it publishes the velocity as received in /cmd_vel topic</para>
+</listitem><listitem><para>COLLISION ASSISTANT ON --&gt; it saves the velocity in a global variable </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="120" column="6" bodyfile="src/manual.cpp" bodystart="120" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="manual_8cpp_1a060d2b1bc6a85691b04df56b7e399e7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void drivingAssistant</definition>
+        <argsstring>(const sensor_msgs::LaserScan::ConstPtr &amp;laserMsg)</argsstring>
+        <name>drivingAssistant</name>
+        <param>
+          <type>const sensor_msgs::LaserScan::ConstPtr &amp;</type>
+          <declname>laserMsg</declname>
+        </param>
+        <briefdescription>
+<para>Callback function of /scan topic (LaserScan) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>laserMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Robot&apos;s laser scan</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is called at every message on the /scan topic:<itemizedlist>
+<listitem><para>COLLISION ASSISTANT OFF --&gt; it ignores the message and returns</para>
+</listitem><listitem><para>COLLISION ASSISTANT ON --&gt; it stops the robot motion along a certain direction if there is a wall near in that direction and publishes the velocity in /cmd_vel topic </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/manual.cpp" line="141" column="6" bodyfile="src/manual.cpp" bodystart="141" bodyend="189"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manual controller of the robot. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Mohammad Al Horany </para>
+</simplesect>
+<simplesect kind="version"><para>1.0 </para>
+</simplesect>
+<simplesect kind="date"><para>10/04/2022</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">assistant</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Defines if the collision avoidance is on.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Subscribes to: <linebreak/>
+ /check_vel It contains the velocity to be sent to the robot /scan It contains the laser scan ranges</para>
+<para>Publishes to: <linebreak/>
+ /cmd_vel It sends the velocity to the robot</para>
+<para>Description : This is the node that allows the user to control the robot with the keyboard, via &apos;teleop_twist_keyboard&apos;, runned in another console. If the collision assistant is off, it simply publishes velocities as received, so the user can even go straight to an obstacle. If the collision assistant is on, it receives velocities and laser scan ranges, and checks if the user is going in a direction where there are obstacles more near than a certain threshold (0.8). In this case, it sets the velocity (linear/angular) pointing to the obstacle to 0. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="28"><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ros/ros.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;geometry_msgs/Twist.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sensor_msgs/LaserScan.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Threshold<sp/>distance<sp/>from<sp/>the<sp/>wall<sp/>to<sp/>not<sp/>be<sp/>exceeded<sp/>when<sp/>in<sp/>collision<sp/>avoidance<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WALL_TH<sp/>0.8<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>PUBLISHER<sp/>DECLARING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">ros::Publisher<sp/><ref refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kindref="member">pub_vel</ref>;<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//Variables<sp/>for<sp/>assistant<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kindref="member">assistant</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">geometry_msgs::Twist<sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>;<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>//FUNCTIONS<sp/>FOR<sp/>MANUAL<sp/>DRIVING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>manualDrive();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>checkVel(const<sp/>geometry_msgs::Twist::ConstPtr&amp;<sp/>msg);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>drivingAssistant(const<sp/>sensor_msgs::LaserScan::ConstPtr<sp/>&amp;laserMsg);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="manual_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NODE<sp/>INITIALIZATION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;manual_node&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>nh;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLISHERS<sp/>DEFINING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kindref="member">pub_vel</ref><sp/>=<sp/>nh.advertise&lt;geometry_msgs::Twist&gt;(</highlight><highlight class="stringliteral">&quot;/cmd_vel&quot;</highlight><highlight class="normal">,<sp/>1000);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>SUBSCRIBERS<sp/>DEFINING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/>sub_velocity<sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/check_vel&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/><ref refid="manual_8cpp_1accc61c6bd4cc1f1aa51c6a270e390c38" kindref="member">checkVel</ref>);<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/>sub_laser<sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/scan&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/><ref refid="manual_8cpp_1a060d2b1bc6a85691b04df56b7e399e7a" kindref="member">drivingAssistant</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//GET<sp/>THE<sp/>PARAMETER<sp/>ACTIVATING<sp/>COLLISION<sp/>ASSISTANT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::param::get(</highlight><highlight class="stringliteral">&quot;collisionAssistant&quot;</highlight><highlight class="normal">,<sp/><ref refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kindref="member">assistant</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MULTI-THREADING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::AsyncSpinner<sp/>spinner(3);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>spinner.start();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a60e6d5e952ea263ffd664435526673ed" kindref="member">manualDrive</ref>();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>spinner.stop();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ui_8cpp_1a0fc1f09b9abf6843e19b643f448bef53" kindref="member">ros::shutdown</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::waitForShutdown();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="manual_8cpp_1a60e6d5e952ea263ffd664435526673ed" kindref="member">manualDrive</ref>()</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>input;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>system(</highlight><highlight class="stringliteral">&quot;clear&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/><sp/></highlight><highlight class="stringliteral">&quot;\n\n\t<sp/>===<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MANUAL<sp/>DRIVING<sp/>MODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>===\n\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kindref="member">assistant</ref>)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\t<sp/><sp/><sp/><sp/>+++++<sp/><sp/><sp/>Driving<sp/>assistance<sp/>enabled<sp/>+++++<sp/><sp/><sp/><sp/>\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\t<sp/><sp/><sp/><sp/>-----<sp/><sp/><sp/>Driving<sp/>assistance<sp/>disabled<sp/>-----\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n\n\n<sp/>\t<sp/><sp/>###<sp/>---<sp/>ENTER<sp/>ANY<sp/>KEY<sp/>TO<sp/>EXIT<sp/>MANUAL<sp/>MODE<sp/>---<sp/>###\n\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cin<sp/>&gt;&gt;<sp/>input;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(),<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//STOPPING<sp/>THE<sp/>ROBOT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.linear.x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kindref="member">pub_vel</ref>.publish(<ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>);<sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="manual_8cpp_1accc61c6bd4cc1f1aa51c6a270e390c38" kindref="member">checkVel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::Twist::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kindref="member">assistant</ref>)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kindref="member">pub_vel</ref>.publish(msg);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//take<sp/>note<sp/>of<sp/>velocities<sp/>that<sp/>will<sp/>be<sp/>checked/modified<sp/>by<sp/>drivingAssistant</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.linear.x<sp/>=<sp/>msg-&gt;linear.x;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>=<sp/>msg-&gt;angular.z;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="manual_8cpp_1a060d2b1bc6a85691b04df56b7e399e7a" kindref="member">drivingAssistant</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::LaserScan::ConstPtr<sp/>&amp;laserMsg)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//IF<sp/>Assistant<sp/>ISN&apos;T<sp/>ENABLED,<sp/>IGNORES<sp/>THE<sp/>MESSAGE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="manual_8cpp_1abd6f6b880e1b04dbcf84d6ccbfe1efaa" kindref="member">assistant</ref>)<sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//CHECK<sp/>NEAREST<sp/>WALL<sp/>IN<sp/>EACH<sp/>DIRECTION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size<sp/>=<sp/>laserMsg-&gt;ranges.size();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sectionSize<sp/>=<sp/>size/<sp/>3;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>laserScan[size];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;size;<sp/>i++){</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>laserScan[i]<sp/>=<sp/>laserMsg-&gt;ranges[i];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>nearestWall_Right<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>nearestWall_Front<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>nearestWall_Left<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sectionSize;<sp/>i++){</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(laserScan[i]<sp/>&lt;<sp/>nearestWall_Right)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nearestWall_Right<sp/>=<sp/>laserScan[i];</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(laserScan[i<sp/>+<sp/>sectionSize]<sp/>&lt;<sp/>nearestWall_Front)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nearestWall_Front<sp/>=<sp/>laserScan[i<sp/>+<sp/>sectionSize];</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(laserScan[i<sp/>+<sp/>2*sectionSize]<sp/>&lt;<sp/>nearestWall_Left)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nearestWall_Left<sp/>=<sp/>laserScan[i<sp/>+<sp/>2*sectionSize];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//BLOCKS<sp/>THE<sp/>MOTION<sp/>IN<sp/>A<sp/>CERTAIN<sp/>DIRECTION<sp/>(MODIFYING<sp/>MYVEL)<sp/>IF<sp/>THERE<sp/>IS<sp/>AN<sp/>OBSTACLE<sp/>NEAR<sp/>IN<sp/>THAT<sp/>DIRECTION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//RIGHT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nearestWall_Right<sp/>&lt;<sp/><ref refid="manual_8cpp_1aa4d1dd299d39287a05983faf79e4fd7d" kindref="member">WALL_TH</ref><sp/>&amp;&amp;<sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;===<sp/><sp/><sp/><sp/><sp/>CAUTION<sp/>:<sp/>Obstacle<sp/>near<sp/>at<sp/>right<sp/>side<sp/><sp/><sp/><sp/><sp/><sp/><sp/>===&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//FRONT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nearestWall_Front<sp/>&lt;<sp/><ref refid="manual_8cpp_1aa4d1dd299d39287a05983faf79e4fd7d" kindref="member">WALL_TH</ref><sp/>&amp;&amp;<sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>==<sp/>0){</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.linear.x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;===<sp/><sp/><sp/><sp/><sp/>CAUTION<sp/>:<sp/>Obstacle<sp/>near<sp/>at<sp/>front<sp/>side<sp/><sp/><sp/><sp/><sp/><sp/><sp/>===&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//LEFT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nearestWall_Left<sp/>&lt;<sp/>WALL_TH<sp/>&amp;&amp;<sp/>myVel.angular.z<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>.angular.z<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;===<sp/><sp/><sp/><sp/><sp/>CAUTION<sp/>:<sp/>Obstacle<sp/>near<sp/>at<sp/>left<sp/>side<sp/><sp/><sp/><sp/><sp/><sp/><sp/>===&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//PUBLISH<sp/>THE<sp/>VELOCITY<sp/>MODIFIED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="manual_8cpp_1ac0664a23d360105ec3d579965d5b7631" kindref="member">pub_vel</ref>.publish(<ref refid="manual_8cpp_1a511b3d224c1d6e07e2884ce294238ccc" kindref="member">myVel</ref>);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/manual.cpp"/>
+  </compounddef>
+</doxygen>
